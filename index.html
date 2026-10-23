@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=minimize" />
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <!-- header -->
+    <header id="siteHeader">
+        <div class="headSinistra">
+            <h1>La tua videoteca personale </h1>
+            <p>Aggiungi alla lista i tuoi film, serie o anime che stai seguendo o che vorrai seguire </p>
+        </div>
+        <div class="headDestra">
+            <button id="themeToggle" class="btn-theme">
+                <i class="fas fa-moon"></i> Tema Scuro
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- barra di ricerca -->
+        <section class="sezione">
+            <input type="search" id="ricerca" placeholder="Cerca nella tua videoteca...">
+        </section>
+
+        <!-- inserimento -->
+        <section class="sezione inserimento">
+            <input type="text" id="nuovoTitolo" placeholder="Titolo di film, serie tv o anime">
+            <select id="genere">
+                <option value="romantico">Romantico</option>
+                <option value="azione">Azione</option>
+                <option value="comico">Comico</option>
+                <option value="thriller">Thriller</option>
+                <option value="horror">Horror</option>
+                <option value="fantasy">Fantasy</option>
+            </select>
+            <select id="stato">
+                <option value=""></option>
+                <option value="da vedere">Da vedere</option>
+                <option value="visto">Visto</option>
+            </select>
+            <input type="button" id="bottoneAggiungi" value="Aggiungi">
+        </section>
+
+        <!-- contatori e barra -->
+        <section class="sezione">
+            <div class="contatori">
+                <div class="contatore">Totale: <strong id="contTotale">0</strong></div>
+                <div class="contatore">Visti: <strong id="contVisti">0</strong></div>
+                <div class="contatore">Da vedere: <strong id="contDaVedere">0</strong></div>
+            </div>
+            <div class="barra">
+                <div class="barra-riempita" id="barraRiempita"></div>
+            </div>
+        </section>
+
+        <!-- card -->
+        <section class="sezione">
+            <div id="listaCard" class="griglia"></div>
+        </section>
+    </main>
+
+    <!-- footer -->
+    <footer id="siteFooter">
+        <ul class="iconFoot">
+
+            <li>
+                <a href="javascript:void(0)"><i class="fab fa-github-square"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)"><i class="fab fa-linkedin"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)"><i class="fas fa-envelope"></i></a>
+            </li>
+            <li>
+                <a href="javascript:void(0)"><i class="fas fa-globe"></i></a>
+            </li>
+        </ul>
+        <p class="scritta"><br>© 2026 Manuel Burgalassi <span class="material-symbols-outlined"
+                id="f-line">minimize</span> Costruito a
+            mano durante la terza settimana del corso Epicode
+        </p>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

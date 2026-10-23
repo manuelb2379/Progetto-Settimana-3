@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+/*header*/
+#siteHeader {
+  background-color: rgb(24, 23, 23);
+  color: #ffffff;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  padding: 40px 20px;
+  border-bottom: 4px solid hsl(45, 90%, 60%);
+  overflow: hidden;
+}
+
+/*distribuzione dei 2 div di header*/
+.headSinistra{
+  float: left;        
+  width: 70%;        
+  text-align: center; 
+  padding: 10px;
+}
+
+.headDestra{
+    width: 30%;
+    padding-top: 40px;
+    float: left;
+  text-align: left; 
+
+}
+/* bottone del tema */
+.btn-theme {
+  background-color: hsl(45, 90%, 60%);
+  color: black;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.btn-theme:hover {
+  background-color: hsl(45, 100%, 68%);
+}
+/*main*/
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding: 40px;
+  height: 800px;
+}
+body {
+  background-color: #f4f6f8; 
+  color: #333333;
+  transition: background-color 0.3s ease;
+}
+
+/* body modalità scura e chiara */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+body.dark-mode main {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+/*footer*/
+
+#siteFooter {
+  background-color: rgb(24, 23, 23);
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 40px;
+  border-top: 4px solid hsl(45, 90%, 60%);
+}
+
+.iconFoot {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.iconFoot li {
+  background-color: rgba(255, 255, 255, 0.08);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  line-height: 2.1;
+}
+
+.iconFoot li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+}
+
+.iconFoot li:hover {
+  background-color: hsl(220, 60%, 45%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.scritta {
+  margin-top: 0;
+}
