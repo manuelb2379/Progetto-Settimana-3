@@ -99,9 +99,9 @@ body.dark-mode main .sezione {
 }
 
 /*nessun risultato trovato*/
-.nessunRisultato{
-    text-align: center;
-    font-size: 2em;
+.nessunRisultato {
+  text-align: center;
+  font-size: 2em;
 }
 
 /*sezione inserimento*/
@@ -118,6 +118,10 @@ body.dark-mode main .sezione {
   overflow: hidden;
 }
 
+#nuovoTitolo {
+  width: 50%;
+}
+
 #nuovoTitolo,
 #stato,
 #genere,
@@ -127,12 +131,26 @@ body.dark-mode main .sezione {
   margin-right: 5px;
 }
 
-#nuovoTitolo {
-  width: 50%;
+.genere,
+.stato {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5px;
+  margin-top: -40px;
+  width: 15%;
+}
+
+
+.genere p,
+.stato p {
+margin-bottom: 5px;
 }
 
 #genere,
-#stato,
+#stato {
+  width: 100%;
+}
+
 #bottoneAggiungi {
   width: 15%;
 }
@@ -237,8 +255,8 @@ body.dark-mode main .sezione {
   color: black;
 }
 
-.cardSinistra h4:focus{
-    background-color: white;
+.cardSinistra h4:focus {
+  background-color: white;
 }
 
 .cardSinistra p {
@@ -300,14 +318,25 @@ body.dark-mode main .sezione {
 #notifica {
   display: none;
   position: fixed;
-  top: 20px;
+  top: 250px;
   right: 20px;
   z-index: 100;
   padding: 15px 25px;
   border-radius: 8px;
-  color: white;
+  background-color: #f5c73d;
+  color: black;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/*input di modifica */
+.campoModifica {
+   font-size: 20px;
+  font-family: inherit;
+  padding: 8px;
+  width: 80%;
+  border: 2px solid hsl(45, 90%, 60%);
+  border-radius: 5px;
 }
 
 /*footer*/

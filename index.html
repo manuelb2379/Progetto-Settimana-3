@@ -36,17 +36,23 @@
         <!-- inserimento -->
         <section class="sezione inserimento">
             <input type="text" id="nuovoTitolo" placeholder="Titolo di film, serie tv o anime" required>
-            <select id="genere">
+            <div class="genere">
+                <p>Genere:</p>
+                <select id="genere">
 
-                <option value="romantico">Romantico</option>
-                <option value="azione">Azione</option>
-                <option value="comico">Comico</option>
-                <option value="thriller">Thriller</option>
-                <option value="horror">Horror</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="altro">Altro</option>
+                    <option value=""></option>
+                    <option value="romantico">Romantico</option>
+                    <option value="azione">Azione</option>
+                    <option value="comico">Comico</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="horror">Horror</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="altro">Altro</option>
 
-            </select>
+                </select>
+            </div>
+            <div class="stato">
+                <p>Stato:</p>
             <select id="stato">
 
                 <option value=""></option>
@@ -54,6 +60,7 @@
                 <option value="visto">Visto</option>
 
             </select>
+            </div>
             <input type="button" id="bottoneAggiungi" value="Aggiungi">
         </section>
 

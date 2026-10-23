@@ -27,6 +27,7 @@ let videoteca = [
 
 let prossimoId = 5;
 let timerNotifica;
+let modificaTitolo = null;
 
 const ricerca = document.querySelector('#ricerca');
 const nuovoTitolo = document.querySelector('#nuovoTitolo');
@@ -56,20 +57,10 @@ themeToggleBtn.addEventListener('click', function () {
     }
 });
 
+/* notifica quando si modifica, aggiunge o elimina un elemento*/
 function mostraNotifica(testo, tipo = "aggiunto") {
     notificaDiv.textContent = testo;
     notificaDiv.style.display = "block";
-
-    if (tipo === "aggiunto") {
-        notificaDiv.style.backgroundColor = "#16a34a";
-        notificaDiv.style.color = "white";
-    } else if (tipo === "modifica") {
-        notificaDiv.style.backgroundColor = "#F5C73D";
-        notificaDiv.style.color = "black";
-    } else {
-        notificaDiv.style.backgroundColor = "#dc2626";
-        notificaDiv.style.color = "white";
-    }
 
     // se c'era già una notifica in corso, annullo il suo timer
     clearTimeout(timerNotifica);
@@ -119,6 +110,7 @@ function mostraCard() {
     visibili.forEach((singolo) => {
         const card = document.createElement('div');
         card.classList.add('card');
+        card.id = singolo.id;
 
         // parte sinistra delle card con h4 e p
         const sinistra = document.createElement('div');
@@ -130,8 +122,17 @@ function mostraCard() {
         const testoGenere = document.createElement('p');
         testoGenere.textContent = singolo.genere;
 
-        sinistra.appendChild(titolo);
-        sinistra.appendChild(testoGenere);
+        if (singolo.id === modificaTitolo) {
+            const campo = document.createElement('input');
+            campo.type = 'text';
+            campo.value = singolo.nome;
+            campo.id = singolo.id
+            campo.classList.add('campoModifica');
+            sinistra.appendChild(campo);
+        } else {
+            sinistra.appendChild(titolo);
+        }
+        sinistra.appendChild(testoGenere)
 
         //parte destra delle card con i button e badge che cambia con il button
 
@@ -171,31 +172,15 @@ function mostraCard() {
         // button per modificare h4
         const modifica = document.createElement('button');
         modifica.type = 'button';
+        modifica.classList.add('modifica');
+        modifica.value = singolo.id;
         modifica.textContent = 'Modifica';
-        modifica.addEventListener('click', () => {
-            if (modifica.textContent === 'Modifica') {
-                titolo.contentEditable = 'true';
-                titolo.focus();
-                modifica.textContent = 'Salva';
-            } else {
-                const nuovoNome = titolo.textContent.trim();
-                if (nuovoNome !== '') {
-                    mostraNotifica('Hai modificato ' + singolo.nome + ' in ' + nuovoNome);
-                    singolo.nome = nuovoNome;
-                }
-                mostraCard();
-            }
-        });
 
         const elimina = document.createElement('button');
         elimina.type = 'button';
         elimina.classList.add('elimina');
+        elimina.value = singolo.id;
         elimina.textContent = 'Elimina';
-        elimina.addEventListener('click', () => {
-            mostraNotifica('Hai eliminato ' + singolo.nome + ' dalla lista');
-            videoteca = videoteca.filter((v) => v.id !== singolo.id);
-            mostraCard();
-        });
 
         destra.appendChild(badge);
         destra.appendChild(cambioBadge);
@@ -208,25 +193,85 @@ function mostraCard() {
     });
 
     aggiornaContatori();
-
-    bottoneAggiungi.addEventListener('click', () => {
-        const valore = nuovoTitolo.value.trim();
-        if (valore === '' || stato.value === '') return;
-
-        videoteca.push({
-            nome: valore,
-            id: prossimoId,
-            genere: genere.value,
-            completato: stato.value
-        });
-        mostraNotifica('Hai aggiunto ' + valore + ' alla lista');
-        prossimoId++;
-        nuovoTitolo.value = '';
-        mostraCard();
-    });
-
-    ricerca.addEventListener('input', mostraCard);
-
-
 }
+
+function salvaModifica(campo) {
+    if (modificaTitolo === null) return;
+
+    const id = Number(campo.id);
+    const nuovoNome = campo.value.trim();
+    const elemento = videoteca.find((v) => v.id === id);
+
+    if (nuovoNome !== '') {
+        mostraNotifica('Hai modificato ' + elemento.nome + ' in ' + nuovoNome);
+        elemento.nome = nuovoNome;
+    }
+    modificaTitolo = null;
+    mostraCard();
+}
+
+listaCard.addEventListener('click', (event) => {
+    if (event.target.classList.contains('elimina')) {
+        const id = Number(event.target.value);
+        const elemento = videoteca.find((v) => v.id === id);
+        mostraNotifica('Hai eliminato ' + elemento.nome + ' dalla lista');
+        videoteca = videoteca.filter((v) => v.id !== id);
+        mostraCard();
+    }
+
+    if (event.target.classList.contains('modifica')) {
+        modificaTitolo = Number(event.target.value);
+        mostraCard();
+        document.querySelector('.campoModifica').focus();
+    }
+});
+
+// conferma la modifica con Invio
+listaCard.addEventListener('keydown', (event) => {
+    if (event.target.classList.contains('campoModifica') && event.key === 'Enter') {
+        salvaModifica(event.target);
+    }
+});
+
+//conferma la modifica uscendo dal campo
+listaCard.addEventListener('blur', (event) => {
+    if (event.target.classList.contains('campoModifica')) {
+        salvaModifica(event.target);
+    }
+});
+
+listaCard.addEventListener('focusout', (event) => {
+    if (event.target.classList.contains('campoModifica')) {
+        salvaModifica(event.target);
+    }
+});
+
+
+bottoneAggiungi.addEventListener('click', () => {
+    const valore = nuovoTitolo.value.trim();
+
+    if (valore === '' || genere.value === '' || stato.value === '') {
+        alert('Ti preghiamo di completare tutti i campi per inserire correttamente il nuovo film, serie tv o anime!');
+        nuovoTitolo.value = '';
+        genere.value = '';
+        stato.value = '';
+        return;
+    }
+
+    videoteca.push({
+        nome: valore,
+        id: prossimoId,
+        genere: genere.value,
+        completato: stato.value
+    });
+    mostraNotifica('Hai aggiunto ' + valore + ' alla lista');
+    prossimoId++;
+    nuovoTitolo.value = '';
+    mostraCard();
+});
+
+ricerca.addEventListener('input', mostraCard);
+
+
+
 mostraCard();
