@@ -21,7 +21,7 @@
             <p>Aggiungi alla lista i tuoi film, serie o anime che stai seguendo o che vorrai seguire </p>
         </div>
         <div class="headDestra">
-            <button id="themeToggle" class="btn-theme">
+            <button id="themeToggle" class="btnTheme">
                 <i class="fas fa-moon"></i> Tema Scuro
             </button>
         </div>
@@ -35,39 +35,49 @@
 
         <!-- inserimento -->
         <section class="sezione inserimento">
-            <input type="text" id="nuovoTitolo" placeholder="Titolo di film, serie tv o anime">
+            <input type="text" id="nuovoTitolo" placeholder="Titolo di film, serie tv o anime" required>
             <select id="genere">
+
                 <option value="romantico">Romantico</option>
                 <option value="azione">Azione</option>
                 <option value="comico">Comico</option>
                 <option value="thriller">Thriller</option>
                 <option value="horror">Horror</option>
                 <option value="fantasy">Fantasy</option>
+                <option value="altro">Altro</option>
+
             </select>
             <select id="stato">
+
                 <option value=""></option>
                 <option value="da vedere">Da vedere</option>
                 <option value="visto">Visto</option>
+
             </select>
             <input type="button" id="bottoneAggiungi" value="Aggiungi">
         </section>
 
         <!-- contatori e barra -->
-        <section class="sezione">
+        <section class="sezione riepilogo">
             <div class="contatori">
-                <div class="contatore">Totale: <strong id="contTotale">0</strong></div>
-                <div class="contatore">Visti: <strong id="contVisti">0</strong></div>
-                <div class="contatore">Da vedere: <strong id="contDaVedere">0</strong></div>
+                <div class="contatore"><strong id="contTotale">0</strong> Totale</div>
+                <div class="contatore"><strong id="contVisti">0</strong> Visti</div>
+                <div class="contatore"><strong id="contDaVedere">0</strong> Da vedere</div>
             </div>
-            <div class="barra">
-                <div class="barra-riempita" id="barraRiempita"></div>
+            <div class="progresso">
+                <div class="barra">
+                    <div class="barraRiempimento" id="barraRiempita"></div>
+                </div>
+                <p>Percentuale visti</p>
             </div>
         </section>
 
         <!-- card -->
-        <section class="sezione">
+        <section class="sezione cartine">
             <div id="listaCard" class="griglia"></div>
         </section>
+
+        <div id="notifica"></div>
     </main>
 
     <!-- footer -->
