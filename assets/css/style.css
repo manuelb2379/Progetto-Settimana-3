@@ -140,10 +140,9 @@ body.dark-mode main .sezione {
   width: 15%;
 }
 
-
 .genere p,
 .stato p {
-margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 #genere,
@@ -168,6 +167,10 @@ margin-bottom: 5px;
   padding: 13px;
   font-weight: 700;
   cursor: pointer;
+}
+
+#bottoneAggiungi:hover {
+  background-color: hsl(45, 100%, 84%);
 }
 
 /*sezione contatori e barra*/
@@ -331,7 +334,7 @@ margin-bottom: 5px;
 
 /*input di modifica */
 .campoModifica {
-   font-size: 20px;
+  font-size: 20px;
   font-family: inherit;
   padding: 8px;
   width: 80%;
